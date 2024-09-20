@@ -1,7 +1,8 @@
 import React from 'react';
 import Sidebar from '../components/sidebar/page';
-import CreateNewDropdown from '../components/createDropdown/page';  
+import CreateNewDropdown from '../components/createDropdown/page'; 
 import { FaSearch } from 'react-icons/fa';
+import Link from 'next/link';
 
 const DashboardLayout = () => {
 return (
@@ -19,7 +20,7 @@ return (
             <CreateNewDropdown />
 
             {/* Search Bar */}
-            <div className="flex items-center hidden sm:flex space-x-2"> 
+            <div className="flex items-center hidden sm:flex space-x-2"> {/* Hide search bar on small screens */}
                 <input
                     type="text"
                     placeholder="Search..."
@@ -40,26 +41,26 @@ return (
     </div>
 
     {/* Dashboard Content */}
-    <div className="text-2xl font-bold mb-4 text-center">Dashboard</div>
+    <div className="text-2xl font-bold mb-4 text-center w-full">Dashboard</div>
 
     {/* Dashboard Cards */}
-    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-10 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 w-full">
+        {/* Card 1 */}
         <div className="bg-white p-6 rounded-lg shadow-md w-full">
         <h2 className="text-lg font-semibold mb-2">New Appointments</h2>
         <p className="text-3xl">0</p>
         </div>
+        {/* Card 2 */}
         <div className="bg-white p-6 rounded-lg shadow-md w-full">
         <h2 className="text-lg font-semibold mb-2">Total Appointments</h2>
         <p className="text-3xl">0</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-md w-full">
-        <h2 className="text-lg font-semibold mb-2">Total Prescriptions</h2>
-        <p className="text-3xl">0</p>
-        </div>
+        {/* Card 3 */}
         <div className="bg-white p-6 rounded-lg shadow-md w-full">
         <h2 className="text-lg font-semibold mb-2">Due Payments</h2>
         <p className="text-3xl">0</p>
         </div>
+        {/* Card 4 */}
         <div className="bg-white p-6 rounded-lg shadow-md w-full">
         <h2 className="text-lg font-semibold mb-2">Total Payments</h2>
         <p className="text-3xl">0</p>

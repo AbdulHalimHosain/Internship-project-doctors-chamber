@@ -1,63 +1,71 @@
 import React from 'react';
-import Sidebar from '../components/sidebarDoctor/page';
+import Sidebar from '../components/sidebar/page';
+import CreateNewDropdown from '../components/createDropdown/page'; 
+import { FaSearch } from 'react-icons/fa'; 
 
 const DashboardLayout = () => {
 return (
-<div className="flex">
+<div className="flex w-full min-h-screen h-screen">
     <Sidebar />
 
     {/* Main Dashboard Content */}
-    <div className="flex-1 p-10 bg-gray-100 relative">
-    {/* Header with Logout Button */}
-    <div className="absolute right-10 top-6">
-        <button className="bg-lightblue-400 text-white px-4 py-2 rounded hover:bg-indigo-600">
-        Logout
-        </button>
+    <div className="flex-1 p-4 sm:p-6 md:p-10 bg-gray-100 relative min-h-screen h-full overflow-auto">
+    
+    {/* Header with Dropdown, Search, and Logout Button */}
+    <div className="mb-5 flex justify-between items-center space-x-4 px-4 sm:px-12 sm:space-x-6 top-4 sm:top-6">
+        {/* create New Dropdown and Search Bar */}
+        <div className="flex items-center space-x-4">
+            {/* Create New Dropdown */}
+            <CreateNewDropdown />
+
+            {/* Search Bar */}
+            <div className="flex items-center hidden sm:flex space-x-2"> 
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    className="border border-gray-300 px-4 py-2 rounded-md w-full sm:w-64"
+                />
+                <button className="bg-lightblue-400 text-white px-3 py-2 rounded hover:bg-indigo-600">
+                    <FaSearch />
+                </button>
+            </div>
+        </div>
+
+        {/* Logout Button */}
+        <div>
+            <button className="bg-lightblue-400 text-white px-4 py-2 rounded hover:bg-indigo-600">
+                Logout
+            </button>
+        </div>
     </div>
 
     {/* Dashboard Content */}
     <div className="text-2xl font-bold mb-4 text-center">Dashboard</div>
 
     {/* Dashboard Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
-        {/* Card 1 */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-10 w-full">
         <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">New Appointments</h2>
         <p className="text-3xl">0</p>
         </div>
-        {/* Card 2 */}
         <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Total Appointments</h2>
         <p className="text-3xl">0</p>
         </div>
-        {/* Card 3 */}
         <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">New Patients</h2>
         <p className="text-3xl">0</p>
         </div>
-        {/* Card 4 */}
         <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">All Patients</h2>
         <p className="text-3xl">0</p>
         </div>
-        {/* Card 5 */}
         <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Total Prescriptions</h2>
         <p className="text-3xl">0</p>
         </div>
-        {/* Card 6 */}
         <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-lg font-semibold mb-2">Total Payments</h2>
-        <p className="text-3xl">0</p>
-        </div>
-        {/* Card 7 */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-lg font-semibold mb-2">Payments This Month</h2>
-        <p className="text-3xl">0</p>
-        </div>
-        {/* Card 8 */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-lg font-semibold mb-2">Payments This Year</h2>
         <p className="text-3xl">0</p>
         </div>
     </div>
@@ -69,28 +77,34 @@ return (
         <table className="min-w-full bg-white table-auto">
             <thead>
             <tr>
-                <th className="py-2 px-4">ID</th>
-                <th className="py-2 px-4">Patient Name</th>
-                <th className="py-2 px-4">Date</th>
-                <th className="py-2 px-4">Time Slot</th>
-                <th className="py-2 px-4">Status</th>
-                <th className="py-2 px-4">Actions</th>
+                <th className="py-2 px-2 sm:px-4">ID</th>
+                <th className="py-2 px-2 sm:px-4">Patient Name</th>
+                <th className="py-2 px-2 sm:px-4">Date</th>
+                <th className="py-2 px-2 sm:px-4">Time Slot</th>
+                <th className="py-2 px-2 sm:px-4">Status</th>
+                <th className="py-2 px-2 sm:px-4">Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr className="text-center">
-                <td className="py-2 px-4">0</td>
-                <td className="py-2 px-4">NA</td>
-                <td className="py-2 px-4">NA</td>
-                <td className="py-2 px-4">NA</td>
-                <td className="py-2 px-4">
+                <td className="py-2 px-2 sm:px-4">0</td>
+                <td className="py-2 px-2 sm:px-4">NA</td>
+                <td className="py-2 px-2 sm:px-4">NA</td>
+                <td className="py-2 px-2 sm:px-4">NA</td>
+                <td className="py-2 px-2 sm:px-4">
                 <span className="text-yellow-600">NA</span>
                 </td>
-                <td className="py-2 px-4">
-                <div className="flex justify-center space-x-2">
-                    <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700">Edit</button>
-                    <button className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700">View</button>
-                    <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700">Delete</button>
+                <td className="py-2 px-2 sm:px-4">
+                <div className="flex justify-center space-x-1 sm:space-x-2">
+                    <button className="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded hover:bg-blue-700 text-xs sm:text-sm">
+                    Edit
+                    </button>
+                    <button className="bg-green-500 text-white px-2 sm:px-3 py-1 rounded hover:bg-green-700 text-xs sm:text-sm">
+                    View
+                    </button>
+                    <button className="bg-red-500 text-white px-2 sm:px-3 py-1 rounded hover:bg-red-700 text-xs sm:text-sm">
+                    Delete
+                    </button>
                 </div>
                 </td>
             </tr>
