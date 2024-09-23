@@ -5,10 +5,10 @@ import Sidebar from '../components/sidebar/page';
 import CreateNewDropdown from '../components/createDropdown/page';
 import { FaSearch } from 'react-icons/fa';
 
-// Simulate fetching billing records based on user role
+
 const fetchBillingRecords = (role, userId) => {
 if (role === 'doctor' || role === 'receptionist') {
-// Fetch all billing records for doctors and receptionists
+
 return [
 { id: 'INV-001', patientName: 'John', date: '2024-09-20', amount: '$500', status: 'Paid' },
 { id: 'INV-002', patientName: 'Jane', date: '2024-09-21', amount: '$300', status: 'Unpaid' },
@@ -16,7 +16,6 @@ return [
 }
 
 if (role === 'patient') {
-// Fetch only the patient's billing records
 return [
 { id: 'INV-003', patientName: 'Hosain', date: '2024-09-22', amount: '$200', status: 'Paid' },
 ];
@@ -40,7 +39,7 @@ role: 'doctor',
 
 setUser(loggedInUser);
 
-// Fetch billing records based on user role
+// Fetching billing records based on user role
 const records = fetchBillingRecords(loggedInUser.role, loggedInUser.id);
 setBillingRecords(records);
 setLoading(false);

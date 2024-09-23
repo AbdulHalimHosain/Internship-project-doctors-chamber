@@ -5,7 +5,6 @@ import Sidebar from '../components/sidebar/page';
 import CreateNewDropdown from '../components/createDropdown/page'; 
 import { FaSearch } from 'react-icons/fa'; 
 
-// Simulating an API response for appointments
 const fetchAppointments = (role, userId) => {
 if (role === 'doctor' || role === 'receptionist') {
 return [
@@ -29,7 +28,7 @@ const [user, setUser] = useState(null);
 const [loading, setLoading] = useState(true); 
 
 useEffect(() => {
-// Simulate fetching the logged-in user info will Replace with actual API call or authentication mechanism
+
 const loggedInUser = {
     id: 123,
     name: 'Hosain',

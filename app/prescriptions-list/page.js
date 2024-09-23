@@ -52,7 +52,7 @@ const loggedInUser = {
 
 setUser(loggedInUser);
 
-// Fetching prescriptions based on the user's role
+
 const prescriptionsData = fetchPrescriptions(loggedInUser.role, loggedInUser.id);
 setPrescriptions(prescriptionsData);
 setLoading(false);

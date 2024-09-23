@@ -109,7 +109,7 @@ export default function Home() {
                 </a>
               </div>
 
-              {/* Add Book Appointment Button */}
+              {/* Book Appointment Button */}
               <div className="mt-6">
                 <Link href="/sign-in">
                   <Button

@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 
-// Simulated user fetching function
+
 const fetchUserData = () => {
-// Simulate fetching logged-in user info and will replace this with actual user authentication
 return {
 id: 1,
 name: 'Hosain',
@@ -82,7 +81,7 @@ const Dashboard = () => {
 const [user, setUser] = useState(null);
 
 useEffect(() => {
-// Fetch the logged-in user's data
+// Fetching the logged-in user's data
 const loggedInUser = fetchUserData();
 setUser(loggedInUser);
 }, []);
@@ -93,7 +92,6 @@ return <div>Loading...</div>;
 
 return (
 <div className="flex items-center p-4">
-    {/* Pass the user's role as a prop to CreateNewDropdown */}
     <CreateNewDropdown userRole={user.role} />
 </div>
 );

@@ -22,16 +22,15 @@ const [user, setUser] = useState(null);
 const [loading, setLoading] = useState(true);
 
 useEffect(() => {
-// Simulate fetching the logged-in user info
+
 const loggedInUser = {
     id: 123,
     name: 'Hosain',
-    role: 'doctor', // Can be doctor or receptionist
+    role: 'doctor', 
 };
 
 setUser(loggedInUser);
 
-// Fetching patients based on the user's role
 const patientsData = fetchPatients(loggedInUser.role, loggedInUser.id);
 setPatients(patientsData);
 setLoading(false);
@@ -45,7 +44,7 @@ if (!user) {
 return <div>Loading user data...</div>;
 }
 
-// Only allow doctors and receptionists to view the patient list
+
 if (user.role !== 'doctor' && user.role !== 'receptionist') {
 return (
     <div className="flex w-full min-h-screen h-screen">

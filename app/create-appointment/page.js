@@ -31,7 +31,6 @@ setAppointmentInfo((prevInfo) => ({
 };
 
 const handleTimeSelection = (time) => {
-// Set the selected time in appointmentInfo and add it to bookedTimes
 setAppointmentInfo((prevInfo) => ({
     ...prevInfo,
     appointmentTime: time
@@ -41,23 +40,19 @@ setAppointmentInfo((prevInfo) => ({
 const submitAppointment = (e) => {
 e.preventDefault();
 if (appointmentInfo.appointmentTime) {
-    // Add the selected time to bookedTimes
     setBookedTimes([...bookedTimes, appointmentInfo.appointmentTime]);
 
-    // Logic to handle form submission (e.g., API call)
     console.log('Appointment created:', appointmentInfo);
 
-    // Reset form fields after submission
     setAppointmentInfo({
     patientName: '',
     appointmentDate: '',
     appointmentTime: ''
     });
 
-    // Show success message
+
     setShowSuccessMessage(true);
 
-    // Hide the success message after 3 seconds
     setTimeout(() => {
     setShowSuccessMessage(false);
     }, 3000);

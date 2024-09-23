@@ -28,10 +28,8 @@ try {
     setLoading(true);
     setError(null);
 
-    // Make an API call to update the profile
-    // Example: await axios.put("/api/update-profile", profile);
+    // Will make an API call to update the profile(await axios.put("/api/update-profile", profile);)
 
-    // Simulate successful update
     console.log('Profile updated:', profile);
     alert('Profile updated successfully!');
 } catch (err) {

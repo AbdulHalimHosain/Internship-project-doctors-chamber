@@ -10,8 +10,6 @@ const [isOpen, setIsOpen] = useState(false);
 const [userRole, setUserRole] = useState(null); 
 
 useEffect(() => {
-// Fetch the user's role (e.g., from API or local storage)
-//replace with actual logic
 const fetchUserRole = async () => {
     const role = "doctor"; //replace with actual API logic
     setUserRole(role);

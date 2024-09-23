@@ -3,10 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../components/sidebar/page";
 import Link from "next/link";
-
-// Dummy data to simulate fetching from the database
 const fetchProfileData = () => {
-// Simulate fetching from an API
+// fetching from an API
 return {
 name: "Hosain",
 email: "HOS@example.com",
@@ -21,7 +19,7 @@ const ProfilePage = () => {
 const [profile, setProfile] = useState(null);
 
 useEffect(() => {
-// Fetch the profile data when the component mounts
+// Fetching the profile data when the component mounts
 const data = fetchProfileData();
 setProfile(data);
 }, []);
