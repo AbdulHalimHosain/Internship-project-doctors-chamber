@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Head from 'next/head';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
+import Footer from './components/footer/page';
+import Header from './components/header/page';
 import { Container, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -21,37 +23,7 @@ export default function Home() {
       </Head>
       <div className="min-h-screen flex flex-col bg-white">
         {/* Header */}
-        <header className="flex justify-between items-center p-5 bg-lightblue-400 shadow-md w-full">
-          <div className="flex items-center flex-shrink-0">
-            {/* Link wrapping the logo and title (no <a> tag inside) */}
-            <Link href="/">
-              <div className="flex items-center cursor-pointer">
-                <Image src="/images/Logo.png" alt="Logo" width={40} height={40} className="mr-3" />
-                <span className="text-xl md:text-3xl font-bold text-white">HealthSphere</span>
-              </div>
-            </Link>
-          </div>
-
-          {/* Buttons stay aligned to the right, with margin for space between the title */}
-          <div className="flex space-x-1 flex-shrink-0 ml-3">
-            <Link href="/sign-in">
-              <Button
-                variant="contained"
-                className="bg-lightblue-400 text-white hover:bg-lightblue-500 transition-transform rounded-full px-3 py-1 sm:px-4 sm:py-2 shadow"
-              >
-                Login
-              </Button>
-            </Link>
-            <Link href="/sign-up">
-              <Button
-                variant="outlined"
-                className="text-lightblue-500 hover:bg-lightblue-100 transition-transform rounded-full px-3 py-1 sm:px-4 sm:py-2 shadow"
-              >
-                Sign Up
-              </Button>
-            </Link>
-          </div>
-        </header>
+        <Header />
 
         {/* Main Content */}
         <main className="flex-grow">
@@ -125,72 +97,7 @@ export default function Home() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-lightblue-400 text-white py-8 mt-10">
-          <Container>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-              <div>
-                <Typography variant="h6" gutterBottom>
-                  © {currentYear} HealthSphere
-                </Typography>
-                <Typography variant="body2">
-                  All rights reserved.
-                </Typography>
-              </div>
-
-              <div>
-                <ul className="space-y-2">
-                  <li>
-                    <a href="#" className="hover:text-gray-500 transition-colors">
-                      About Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-gray-500 transition-colors">
-                      Contact Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:text-gray-500 transition-colors">
-                      Privacy Policy
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <Typography variant="h6" gutterBottom>
-                  Follow Us
-                </Typography>
-                <div className="flex justify-center md:justify-start space-x-5">
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-gray-500 transition-colors"
-                  >
-                    <FontAwesomeIcon icon={faFacebook} size="2x" />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-gray-500 transition-colors"
-                  >
-                    <FontAwesomeIcon icon={faTwitter} size="2x" />
-                  </a>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-gray-500 transition-colors"
-                  >
-                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </footer>
+        <Footer />
       </div>
     </>
   );

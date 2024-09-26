@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Sidebar from '../components/sidebar/page'; 
+import Sidebar from '../components/sidebar/page';
 
 const allAvailableTimes = [
 '08:00 - 08:30', '08:30 - 09:00', '09:00 - 09:30',
@@ -12,21 +12,21 @@ const allAvailableTimes = [
 '15:30 - 16:00', '16:00 - 16:30'
 ];
 
-const CreateAppointment = () => {
+const CreateAppointment = ({ onAppointmentCreated }) => {
 const [appointmentInfo, setAppointmentInfo] = useState({
 patientName: '',
 appointmentDate: '',
 appointmentTime: ''
 });
 
-const [bookedTimes, setBookedTimes] = useState([]); 
-const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
+const [bookedTimes, setBookedTimes] = useState({});  
+const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
 const handleInputChange = (e) => {
 const { name, value } = e.target;
 setAppointmentInfo((prevInfo) => ({
     ...prevInfo,
-    [name]: value 
+    [name]: value
 }));
 };
 
@@ -39,10 +39,24 @@ setAppointmentInfo((prevInfo) => ({
 
 const submitAppointment = (e) => {
 e.preventDefault();
-if (appointmentInfo.appointmentTime) {
-    setBookedTimes([...bookedTimes, appointmentInfo.appointmentTime]);
+const { patientName, appointmentDate, appointmentTime } = appointmentInfo;
+
+if (patientName && appointmentDate && appointmentTime) {
+    setBookedTimes((prev) => ({
+    ...prev,
+    [appointmentDate]: [...(prev[appointmentDate] || []), appointmentTime]
+    }));
 
     console.log('Appointment created:', appointmentInfo);
+
+    onAppointmentCreated({
+    id: Date.now(), 
+    patientName,
+    date: appointmentDate,
+    timeSlot: appointmentTime,
+    status: 'Confirmed'
+    });
+
 
     setAppointmentInfo({
     patientName: '',
@@ -52,17 +66,20 @@ if (appointmentInfo.appointmentTime) {
 
 
     setShowSuccessMessage(true);
-
     setTimeout(() => {
     setShowSuccessMessage(false);
     }, 3000);
 } else {
-    alert("Please select a time for the appointment.");
+    alert("Please fill in all the fields and select a time for the appointment.");
 }
 };
 
-// Filter out already booked times
-const availableTimes = allAvailableTimes.filter((time) => !bookedTimes.includes(time));
+// Filter out already booked times for the selected date
+const availableTimes = appointmentInfo.appointmentDate
+? allAvailableTimes.filter(
+    (time) => !bookedTimes[appointmentInfo.appointmentDate]?.includes(time)
+    )
+: allAvailableTimes;
 
 return (
 <div className="flex w-full min-h-screen h-screen">

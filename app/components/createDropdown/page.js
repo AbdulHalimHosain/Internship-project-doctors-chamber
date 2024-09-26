@@ -24,24 +24,27 @@ switch (userRole) {
     case 'doctor':
     return (
         <>
-        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        <a href="/sign-up" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             Patient
         </a>
-        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        <a href="create-appointment" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             Appointment
         </a>
-        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        <a href="create-receptionist" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             Receptionist
+        </a>
+        <a href="/create-prescription" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            Prescription
         </a>
         </>
     );
     case 'receptionist':
     return (
         <>
-        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        <a href="sign-up" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             Patient
         </a>
-        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        <a href="create-appointment" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             Appointment
         </a>
         </>
@@ -49,7 +52,7 @@ switch (userRole) {
     case 'patient':
     return (
         <>
-        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        <a href="create-appointment" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
             Appointment
         </a>
         </>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaBars, FaClinicMedical, FaCalendarAlt, FaUser, FaPrescriptionBottleAlt, FaFileInvoiceDollar } from 'react-icons/fa';
+import { FaBars, FaPills, FaClinicMedical, FaCalendarAlt, FaUser, FaPrescriptionBottleAlt, FaFileInvoiceDollar } from 'react-icons/fa';
 import SettingsDropdown from '../dropdownSetting/SettingsDropdown';
 
 const Sidebar = () => {
@@ -11,7 +11,7 @@ const [userRole, setUserRole] = useState(null);
 
 useEffect(() => {
 const fetchUserRole = async () => {
-    const role = "doctor"; //replace with actual API logic
+    const role = "doctor"; 
     setUserRole(role);
 };
 
@@ -50,31 +50,39 @@ return (
         <ul className="space-y-4">
         {/* Common item for all users */}
         <li>
-            <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
-            <FaClinicMedical className="mr-3 text-xl" /> Dashboard
-            </Link>
+        <Link href="/deshboard-doctor" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+            <FaClinicMedical className="mr-3 text-xl" /> 
+            Dashboard
+        </Link>
         </li>
+
 
         {/* Doctor-specific items */}
         {userRole === "doctor" && (
             <>
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="/patients-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaUser className="mr-3 text-xl" /> Patients
                 </Link>
             </li>
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="appointments-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaCalendarAlt className="mr-3 text-xl" /> Appointment
                 </Link>
             </li>
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="prescriptions-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaPrescriptionBottleAlt className="mr-3 text-xl" /> Prescriptions
                 </Link>
             </li>
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="medicine-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <FaPills className="mr-3 text-xl" /> Medicine List
+                </Link>
+            </li>
+
+            <li>
+                <Link href="bill-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaFileInvoiceDollar className="mr-3 text-xl" /> Billing
                 </Link>
             </li>
@@ -85,17 +93,22 @@ return (
         {userRole === "patient" && (
             <>
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="appointments-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaCalendarAlt className="mr-3 text-xl" /> Appointment
                 </Link>
             </li>
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="prescriptions-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaPrescriptionBottleAlt className="mr-3 text-xl" /> My Prescriptions
                 </Link>
             </li>
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="medicine-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <FaPills className="mr-3 text-xl" /> Medicine List
+                </Link>
+            </li>
+            <li>
+                <Link href="bill-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaFileInvoiceDollar className="mr-3 text-xl" /> My Billing
                 </Link>
             </li>
@@ -106,12 +119,17 @@ return (
         {userRole === "receptionist" && (
             <>
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="appointments-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaCalendarAlt className="mr-3 text-xl" /> Manage Appointments
                 </Link>
             </li>
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="medicine-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <FaPills className="mr-3 text-xl" /> Medicine List
+                </Link>
+            </li>
+            <li>
+                <Link href="bill-list" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaFileInvoiceDollar className="mr-3 text-xl" /> Billing
                 </Link>
             </li>
@@ -121,7 +139,7 @@ return (
         {/* Dropdown */}
         <SettingsDropdown />
             <li>
-                <Link href="#" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
+                <Link href="profile" className="flex items-center text-lg font-medium hover:bg-indigo-600 rounded-lg py-3 px-4 transition-all">
                 <FaUser className="mr-3 text-xl" /> Profile
                 </Link>
             </li>
@@ -133,9 +151,7 @@ return (
         <p className="text-xs text-center">&copy; Created by Hosain</p>
     </div>
     </div>
-
-    {/* Overlay for small screens */}
-    {isOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-0 lg:hidden" onClick={toggleSidebar}></div>}
+    
 </div>
 );
 };
