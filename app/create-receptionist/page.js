@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import Sidebar from '../components/sidebar/page'; // Assuming the sidebar component is located here
-
+import Sidebar from '../components/sidebar/page'; 
 const CreateReceptionist = () => {
 const [receptionistDetails, setReceptionistDetails] = useState({
 name: '',
