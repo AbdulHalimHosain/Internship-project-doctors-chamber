@@ -47,29 +47,29 @@ setSearchTerm(e.target.value);
 setCurrentPage(1); // Reset 
 };
 
-// Filter medicines based on search term
+// Filterd medicines based on search term
 const filteredMedicines = medicines.filter((medicine) =>
 medicine['brand name']?.toLowerCase().includes(searchTerm.toLowerCase())
 );
 
-// Calculate paginated data
+// Calculated paginated data
 const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
 const paginatedMedicines = filteredMedicines.slice(
 startIndex,
 startIndex + ITEMS_PER_PAGE
 );
 
-// Calculate total pages
+// Calculated total pages
 const totalPages = Math.ceil(filteredMedicines.length / ITEMS_PER_PAGE);
 
-// Handle page change
+// Handled page change
 const handlePageChange = (page) => {
 if (page >= 1 && page <= totalPages) {
     setCurrentPage(page);
 }
 };
 
-// Limit the number of visible page buttons
+// Limitd the number of visible page buttons
 const startPage = Math.max(1, currentPage - Math.floor(MAX_VISIBLE_PAGES / 2));
 const endPage = Math.min(totalPages, startPage + MAX_VISIBLE_PAGES - 1);
 const pageNumbers = [];

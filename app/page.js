@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Link from 'next/link';
 import Footer from './components/footer/page';
 import Header from './components/header/page';
-import { Container, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -12,8 +11,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
 
 export default function Home() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <>
       <Head>
@@ -55,35 +52,27 @@ export default function Home() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
               <div className="flex justify-center md:justify-start space-x-4 mt-4">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-lightblue-500 transition-colors"
-                >
-                  <FontAwesomeIcon icon={faFacebook} size="lg" />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-lightblue-500 transition-colors"
-                >
-                  <FontAwesomeIcon icon={faTwitter} size="lg" />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-lightblue-500 transition-colors"
-                >
-                  <FontAwesomeIcon icon={faLinkedin} size="lg" />
-                </a>
+                {/* Social Links using legacyBehavior */}
+                <Link href="https://facebook.com" legacyBehavior>
+                  <a target="_blank" rel="noopener noreferrer" className="hover:text-lightblue-500 transition-colors">
+                    <FontAwesomeIcon icon={faFacebook} size="lg" />
+                  </a>
+                </Link>
+                <Link href="https://twitter.com" legacyBehavior>
+                  <a target="_blank" rel="noopener noreferrer" className="hover:text-lightblue-500 transition-colors">
+                    <FontAwesomeIcon icon={faTwitter} size="lg" />
+                  </a>
+                </Link>
+                <Link href="https://linkedin.com" legacyBehavior>
+                  <a target="_blank" rel="noopener noreferrer" className="hover:text-lightblue-500 transition-colors">
+                    <FontAwesomeIcon icon={faLinkedin} size="lg" />
+                  </a>
+                </Link>
               </div>
 
               {/* Book Appointment Button */}
               <div className="mt-6">
-                <Link href="/sign-in">
+                <Link href="/sign-in" passHref>
                   <Button
                     variant="contained"
                     className="bg-lightblue-400 text-white hover:bg-lightblue-500 transition-transform rounded-full px-5 py-2 shadow"

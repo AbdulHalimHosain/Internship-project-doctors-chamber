@@ -43,10 +43,10 @@ setDoctorAvailability((prev) => {
 const submitAvailability = (e) => {
 e.preventDefault();
 
-// Save the doctor's availability for future patient bookings
+// Saved the doctor's availability for future patient bookings
 setSubmittedAvailabilities([...submittedAvailabilities, doctorAvailability]);
 
-// Remove the selected times from the available times list
+// Removed the selected times from the available times list
 setRemainingAvailableTimes((prevTimes) =>
     prevTimes.filter((time) => !doctorAvailability.times.includes(time))
 );
@@ -56,10 +56,9 @@ setDoctorAvailability({
     times: []
 });
 
-// Show success message
+
 setShowSuccessMessage(true);
 
-// Hide the success message after 3 seconds
 setTimeout(() => {
     setShowSuccessMessage(false);
 }, 3000);
@@ -73,7 +72,7 @@ return (
 
     <div className="flex-1 p-6 bg-gray-100 relative min-h-screen h-full overflow-auto">
     <div className="mb-5 flex justify-between items-center px-4 sm:px-12 top-4 sm:top-6">
-        {/* Title Wrapper */}
+        {/* Title */}
         <div className="flex-1 text-center">
         <h1 className="text-2xl font-bold">Set Your Availability</h1>
         </div>

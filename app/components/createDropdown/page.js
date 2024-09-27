@@ -84,7 +84,6 @@ const Dashboard = () => {
 const [user, setUser] = useState(null);
 
 useEffect(() => {
-// Fetching the logged-in user's data
 const loggedInUser = fetchUserData();
 setUser(loggedInUser);
 }, []);

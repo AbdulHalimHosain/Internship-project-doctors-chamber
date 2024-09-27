@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/sidebar/page';
 import CreateNewDropdown from '../components/createDropdown/page'; 
-import { FaSearch } from 'react-icons/fa'; 
 import Link from 'next/link';
 
 const DashboardLayout = () => {
@@ -29,17 +28,6 @@ return (
         {/* Create New Dropdown */}
         <CreateNewDropdown onAddAppointment={addAppointment} />
 
-        {/* Search Bar */}
-        <div className="flex items-center hidden sm:flex space-x-2"> 
-            <input
-            type="text"
-            placeholder="Search..."
-            className="border border-gray-300 px-4 py-2 rounded-md w-full sm:w-64"
-            />
-            <button className="bg-lightblue-400 text-white px-3 py-2 rounded hover:bg-indigo-600">
-            <FaSearch />
-            </button>
-        </div>
         </div>
 
         {/* Logout Button */}

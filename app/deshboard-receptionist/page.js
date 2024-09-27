@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/sidebar/page';
 import CreateNewDropdown from '../components/createDropdown/page'; 
-import { FaSearch } from 'react-icons/fa';
 import Link from 'next/link';
 
 const DashboardLayout = () => {
@@ -23,24 +22,12 @@ return (
     {/* Main Dashboard Content */}
     <div className="flex-1 p-4 sm:p-6 md:p-10 bg-gray-100 relative min-h-screen h-full overflow-auto">
     
-    {/* Header with Dropdown, Search, and Logout Button */}
+    {/* Header with Dropdown and Logout Button */}
     <div className="mb-5 flex justify-between items-center space-x-4 px-4 sm:px-12 sm:space-x-6 top-4 sm:top-6">
-        {/* Create New Dropdown and Search Bar */}
+        {/* Create New Dropdown */}
         <div className="flex items-center space-x-4">
         {/* Create New Dropdown */}
         <CreateNewDropdown />
-
-        {/* Search Bar */}
-        <div className="flex items-center hidden sm:flex space-x-2">
-            <input
-            type="text"
-            placeholder="Search..."
-            className="border border-gray-300 px-4 py-2 rounded-md w-full sm:w-64"
-            />
-            <button className="bg-lightblue-400 text-white px-3 py-2 rounded hover:bg-indigo-600">
-            <FaSearch />
-            </button>
-        </div>
         </div>
 
         {/* Logout Button */}

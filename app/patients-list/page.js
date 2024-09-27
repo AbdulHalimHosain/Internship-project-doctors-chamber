@@ -7,7 +7,6 @@ import { FaSearch } from 'react-icons/fa';
 import Link from 'next/link';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
 
-
 const fetchPatients = (role, userId) => {
 if (role === 'doctor' || role === 'receptionist') {
 return [
@@ -20,6 +19,7 @@ return [];
 
 const PatientList = () => {
 const [patients, setPatients] = useState([]);
+const [filteredPatients, setFilteredPatients] = useState([]); 
 const [user, setUser] = useState(null);
 const [loading, setLoading] = useState(true);
 const [openEditDialog, setOpenEditDialog] = useState(false);
@@ -30,6 +30,7 @@ age: '',
 gender: '',
 contact: '',
 });
+const [searchTerm, setSearchTerm] = useState(""); 
 
 useEffect(() => {
 const loggedInUser = {
@@ -42,8 +43,23 @@ setUser(loggedInUser);
 
 const patientsData = fetchPatients(loggedInUser.role, loggedInUser.id);
 setPatients(patientsData);
+setFilteredPatients(patientsData); // Initialized filtered patients
 setLoading(false);
 }, []);
+
+const handleSearchChange = (e) => {
+const term = e.target.value.toLowerCase();
+setSearchTerm(term);
+
+const filtered = patients.filter((patient) =>
+patient.name.toLowerCase().includes(term) ||
+patient.age.toString().includes(term) ||
+patient.gender.toLowerCase().includes(term) ||
+patient.contact.toLowerCase().includes(term)
+);
+
+setFilteredPatients(filtered); // Updated filtered patients based on search
+};
 
 const handleEditClick = (patient) => {
 setCurrentPatient(patient);
@@ -54,6 +70,7 @@ setOpenEditDialog(true);
 const handleDeleteClick = (patientId) => {
 const updatedPatients = patients.filter((patient) => patient.id !== patientId);
 setPatients(updatedPatients);
+setFilteredPatients(updatedPatients);
 };
 
 const handleDialogClose = () => {
@@ -73,6 +90,7 @@ const updatedPatients = patients.map((patient) =>
 patient.id === currentPatient.id ? { ...formValues } : patient
 );
 setPatients(updatedPatients);
+setFilteredPatients(updatedPatients);
 handleDialogClose();
 };
 
@@ -90,8 +108,8 @@ return (
 <Sidebar />
 <div className="flex-1 p-4 sm:p-6 md:p-10 bg-gray-100 relative min-h-screen h-full overflow-auto">
     <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-lg font-semibold mb-4">Access Denied</h2>
-        <p className="text-gray-700">You do not have permission to view the patient list.</p>
+    <h2 className="text-lg font-semibold mb-4">Access Denied</h2>
+    <p className="text-gray-700">You do not have permission to view the patient list.</p>
     </div>
 </div>
 </div>
@@ -107,26 +125,28 @@ return (
 <div className="mb-5 flex justify-between items-center space-x-4 px-4 sm:px-12 sm:space-x-6 top-4 sm:top-6">
     {/* Create New Dropdown and Search Bar */}
     <div className="flex items-center space-x-4">
-        <CreateNewDropdown />
-        <div className="flex items-center hidden sm:flex space-x-2">
-            <input
-                type="text"
-                placeholder="Search Patients..."
-                className="border border-gray-300 px-4 py-2 rounded-md w-full sm:w-64"
-            />
-            <button className="bg-lightblue-400 text-white px-3 py-2 rounded hover:bg-indigo-600">
-                <FaSearch />
-            </button>
-        </div>
+    <CreateNewDropdown />
+    <div className="flex items-center hidden sm:flex space-x-2">
+        <input
+        type="text"
+        placeholder="Search Patients..."
+        className="border border-gray-300 px-4 py-2 rounded-md w-full sm:w-64"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        />
+        <button className="bg-lightblue-400 text-white px-3 py-2 rounded hover:bg-indigo-600">
+        <FaSearch />
+        </button>
+    </div>
     </div>
 
     {/* Logout Button */}
     <Link href="/">
-        <div>
-            <button className="bg-lightblue-400 text-white px-4 py-2 rounded hover:bg-indigo-600">
-                Logout
-            </button>
-        </div>
+    <div>
+        <button className="bg-lightblue-400 text-white px-4 py-2 rounded hover:bg-indigo-600">
+        Logout
+        </button>
+    </div>
     </Link>
 </div>
 
@@ -134,38 +154,38 @@ return (
 <div className="bg-white p-6 rounded-lg shadow-md">
     <h2 className="text-lg font-semibold mb-4">Patient List</h2>
 
-    {patients.length === 0 ? (
-        <p>No patients available.</p>
+    {filteredPatients.length === 0 ? (
+    <p>No patients available.</p>
     ) : (
-        <ul className="space-y-4">
-            {patients.map((patient) => (
-                <li key={patient.id} className="border-b border-gray-300 pb-2">
-                    <p className="text-sm font-medium text-gray-700">Name: {patient.name}</p>
-                    <p className="text-sm">Age: {patient.age}</p>
-                    <p className="text-sm">Gender: {patient.gender}</p>
-                    <p className="text-sm">Contact: {patient.contact}</p>
-                    <div className="flex justify-center space-x-1 sm:space-x-2 mt-2">
-                        <button
-                            onClick={() => handleEditClick(patient)}
-                            className="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded hover:bg-blue-700 text-xs sm:text-sm"
-                        >
-                            Edit
-                        </button>
-                        <button
-                            onClick={() => handleDeleteClick(patient.id)}
-                            className="bg-red-500 text-white px-2 sm:px-3 py-1 rounded hover:bg-red-700 text-xs sm:text-sm"
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </li>
-            ))}
-        </ul>
+    <ul className="space-y-4">
+        {filteredPatients.map((patient) => (
+        <li key={patient.id} className="border-b border-gray-300 pb-2">
+            <p className="text-sm font-medium text-gray-700">Name: {patient.name}</p>
+            <p className="text-sm">Age: {patient.age}</p>
+            <p className="text-sm">Gender: {patient.gender}</p>
+            <p className="text-sm">Contact: {patient.contact}</p>
+            <div className="flex justify-center space-x-1 sm:space-x-2 mt-2">
+            <button
+                onClick={() => handleEditClick(patient)}
+                className="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded hover:bg-blue-700 text-xs sm:text-sm"
+            >
+                Edit
+            </button>
+            <button
+                onClick={() => handleDeleteClick(patient.id)}
+                className="bg-red-500 text-white px-2 sm:px-3 py-1 rounded hover:bg-red-700 text-xs sm:text-sm"
+            >
+                Delete
+            </button>
+            </div>
+        </li>
+        ))}
+    </ul>
     )}
 </div>
 <div className="mt-6">
     <Link href="/sign-up" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Create New Patient
+    Create New Patient
     </Link>
 </div>
 </div>
@@ -175,48 +195,48 @@ return (
 <DialogTitle>Edit Patient</DialogTitle>
 <DialogContent>
     <TextField
-        margin="dense"
-        name="name"
-        label="Name"
-        type="text"
-        fullWidth
-        value={formValues.name}
-        onChange={handleFormChange}
+    margin="dense"
+    name="name"
+    label="Name"
+    type="text"
+    fullWidth
+    value={formValues.name}
+    onChange={handleFormChange}
     />
     <TextField
-        margin="dense"
-        name="age"
-        label="Age"
-        type="number"
-        fullWidth
-        value={formValues.age}
-        onChange={handleFormChange}
+    margin="dense"
+    name="age"
+    label="Age"
+    type="number"
+    fullWidth
+    value={formValues.age}
+    onChange={handleFormChange}
     />
     <TextField
-        margin="dense"
-        name="gender"
-        label="Gender"
-        type="text"
-        fullWidth
-        value={formValues.gender}
-        onChange={handleFormChange}
+    margin="dense"
+    name="gender"
+    label="Gender"
+    type="text"
+    fullWidth
+    value={formValues.gender}
+    onChange={handleFormChange}
     />
     <TextField
-        margin="dense"
-        name="contact"
-        label="Contact"
-        type="text"
-        fullWidth
-        value={formValues.contact}
-        onChange={handleFormChange}
+    margin="dense"
+    name="contact"
+    label="Contact"
+    type="text"
+    fullWidth
+    value={formValues.contact}
+    onChange={handleFormChange}
     />
 </DialogContent>
 <DialogActions>
     <Button onClick={handleDialogClose} color="primary">
-        Cancel
+    Cancel
     </Button>
     <Button onClick={handleSaveChanges} color="primary">
-        Save
+    Save
     </Button>
 </DialogActions>
 </Dialog>

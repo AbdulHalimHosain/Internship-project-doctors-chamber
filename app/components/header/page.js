@@ -14,23 +14,17 @@ return (
     </Link>
     </div>
     <div className="flex space-x-1 flex-shrink-0 ml-3">
-    <Link href="/sign-in" passHref>
-        <Button
-        variant="contained"
-        className="bg-lightblue-400 text-white hover:bg-lightblue-500 transition-transform rounded-full px-3 py-1 sm:px-4 sm:py-2 shadow"
-        >
-        Login
-        </Button>
-    </Link>
-    <Link href="/sign-up" passHref>
-        <Button
-        variant="outlined"
-        className="border-lightblue-500 text-lightblue-500 hover:bg-lightblue-100 transition-transform rounded-full px-3 py-1 sm:px-4 sm:py-2 shadow"
-        >
-        Sign Up
-        </Button>
-    </Link>
-    </div>
+        <Link href="/sign-in">
+            <Button variant="contained" className="bg-lightblue-800 text-white hover:bg-lightblue-500 transition-transform rounded-full px-3 py-1 sm:px-4 sm:py-2 shadow">
+            Login
+            </Button>
+        </Link>
+        <Link href="/sign-up">
+            <Button variant="contained" className="bg-lightblue-800 text-white hover:bg-lightblue-500 transition-transform rounded-full px-3 py-1 sm:px-4 sm:py-2 shadow">
+            Sign Up
+            </Button>
+        </Link>
+        </div>
 </header>
 );
 }

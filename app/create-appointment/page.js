@@ -74,7 +74,7 @@ if (patientName && appointmentDate && appointmentTime) {
 }
 };
 
-// Filter out already booked times for the selected date
+// Filterd out already booked times for the selected date
 const availableTimes = appointmentInfo.appointmentDate
 ? allAvailableTimes.filter(
     (time) => !bookedTimes[appointmentInfo.appointmentDate]?.includes(time)
@@ -87,7 +87,7 @@ return (
 
     <div className="flex-1 p-6 bg-gray-100 relative min-h-screen h-full overflow-auto">
     <div className="mb-5 flex justify-between items-center px-4 sm:px-12 top-4 sm:top-6">
-        {/* Title Wrapper */}
+        {/* Title */}
         <div className="flex-1 text-center">
         <h1 className="text-2xl font-bold">New Appointment</h1>
         </div>
